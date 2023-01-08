@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Course;
+use App\Models\Curriculum;
+use App\Models\Lead;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -24,24 +27,69 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $user = new User();
-        $user->name = 'Super Admin';
-        $user->email =  'ashrafulalamsajal@gmail.com';
-        $user->password = bcrypt('password');
-        $user->save();
+//        $user = new User();
+//        $user->name = 'Super Admin';
+//        $user->email =  'ashrafulalamsajal@gmail.com';
+//        $user->password = bcrypt('password');
+//        $user->save();
+//
+//        $role = Role::create([
+//            'name' => 'Super Admin'
+//        ]);
+//
+//        $permission = Permission::create([
+//            'name'  => 'create-admin'
+//        ]);
+//
+//        $role->givePermissionTo($permission);
+//        $permission->assignRole($role);
+//
+//        $user->assignRole($role);
 
-        $role = Role::create([
-            'name' => 'Super Admin'
+        $this->create_user_with_role('Super Admin', 'super admin', 'superadmin@gmail.com' );
+        $this->create_user_with_role('Communication', 'Communication Team', 'communication@gmail.com' );
+        $teacher = $this->create_user_with_role('Teacher', 'Teacher', 'teacher@gmail.com' );
+
+        Lead::factory(100)->create();
+
+
+        $course = Course::create([
+            'name'  => 'Laravel',
+            'description' => 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+            'image' => 'https://picsum.photos/seed/picsum/200/300',
+            'user_id' => $teacher->id
+
         ]);
 
-        $permission = Permission::create([
-            'name'  => 'create-admin'
-        ]);
-
-        $role->givePermissionTo($permission);
-        $permission->assignRole($role);
-
-        $user->assignRole($role);
+        Curriculum::factory(10)->create();
 
     }
+        //line
+        private function create_user_with_role($type, $name, $email){
+
+        $role = Role::create([
+            'name' => $type
+        ]);
+        $user = User::create([
+            'name'  => $name,
+            'email' => $email,
+            'password' => bcrypt('password')
+        ]);
+
+        if($type == 'Super Admin'){
+
+            $permission = Permission::create([
+                'name'  => 'create-admin'
+            ]);
+            $role->givePermissionTo($permission);
+        }
+
+        $user->assignRole($role);
+        return $user;
+
+    }
+
+
+
+
 }
