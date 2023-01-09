@@ -16,11 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @if(Auth::user())
+                @can('lead-management')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('lead.index')" :active="request()->routeIs('lead.index')">
                         {{ __('Leads') }}
                     </x-nav-link>
                 </div>
+                    @endcan
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
