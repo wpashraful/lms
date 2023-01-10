@@ -8,7 +8,7 @@ function rolePermissionCheck($permission){
     $check = $user->hasPermissionTo($permission);
     if(!$check){
         flash()->addWarning('not admin user');
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->send();
     }
 
 }
