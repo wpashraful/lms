@@ -65,6 +65,7 @@ class DatabaseSeeder extends Seeder
             'name'  => 'Laravel',
             'description' => 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
             'image' => 'https://picsum.photos/seed/picsum/200/300',
+            'price' => 500,
             'user_id' => $teacher->id
         ]);
 
