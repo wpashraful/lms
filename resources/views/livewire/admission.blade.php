@@ -33,7 +33,7 @@
                 @if(!empty($selectedCourse))
                     <h3>Price : $ {{number_format($selectedCourse->price,2) }}</h3>
                     <div class="mb-4">
-                        <input wire:model.lazy="payment" type="number" step="0.01" class="lms-input" placeholder="payment now"/>
+                        <input wire:model.lazy="payment" max="{{$selectedCourse->price}}" type="number" step="0.01" class="lms-input" placeholder="payment now"/>
                     </div>
                     @include('components.icons.loading')
                     <button class="btn-submit" type="submit">pay now</button>

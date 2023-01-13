@@ -17,4 +17,32 @@ class Invoice extends Model
     public function items(){
         return $this->hasMany(InvoiceItem::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function payments(){
+        return $this->hasMany(Payment::class, 'invoice_id');
+    }
+    public function amounts(){
+        $amounts = [
+            'total' => 0,
+            'paid' => 0,
+            'due' => 0
+        ];
+
+        foreach($this->items as $item){
+            $amounts['total'] += $item->price * $item->quantity;
+        }
+
+        foreach($this->payments as $item){
+            $amounts['paid'] += $item->price * $item->quantity;
+        }
+
+        foreach($this->payments as $item){
+            $amounts['due'] = $amounts['total'] - $amounts['paid'];
+        }
+        return $amounts;
+    }
 }
