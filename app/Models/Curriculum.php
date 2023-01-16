@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curriculum extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'course_id'
+    ];
     use HasFactory;
     public function homeworks(){
         return $this->hasMany(HomeWork::class);
