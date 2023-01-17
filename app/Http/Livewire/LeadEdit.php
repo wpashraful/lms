@@ -20,11 +20,11 @@ class LeadEdit extends Component
         $this->name = $lead->name;
         $this->email = $lead->email;
         $this->phone = $lead->phone;
-
     }
     public function render()
     {
         $lead = Lead::findOrFail($this->lead_id);
+
         return view('livewire.lead-edit', [
             'notes' => $lead->notes
         ]);
@@ -46,9 +46,11 @@ class LeadEdit extends Component
     }
     public  function addNote(){
         $note = new Note();
+
         $note->description = $this->note;
-        $note->lead_id = $this->lead_id;
         $note->save();
+
+        $note->notes()->attach($this->lead_id);
 
         $this->note = '';
 

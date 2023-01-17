@@ -7,6 +7,7 @@ use App\Models\Curriculum;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CourseCreate extends Component
@@ -69,6 +70,7 @@ class CourseCreate extends Component
                 if ($date->format('l') == $selectedDay){
                     $curriculla  = Curriculum::create([
                         'name' => $this->name,
+                        'description' => $this->description,
                         'course_id' => $course->id
                     ]);
 

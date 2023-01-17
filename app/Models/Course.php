@@ -13,13 +13,15 @@ class Course extends Model
         'name',
         'description',
         'price',
+        'user_id'
     ];
 
     public function curriculums(){
         return $this->hasMany(Curriculum::class);
     }
 
-    public function students(){
-        return $this->belongsToMany(User::class, 'course_students','course_id', 'user_id');
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'course_students', 'course_id', 'user_id');
     }
 }
