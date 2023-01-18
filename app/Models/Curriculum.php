@@ -10,7 +10,7 @@ class Curriculum extends Model
 
     protected $fillable = [
         'name',
-        'course_id'
+        'course_id',
     ];
     use HasFactory;
     public function homeworks(){
@@ -26,6 +26,11 @@ class Curriculum extends Model
 
     public function course(){
         return  $this->belongsTo(Course::class,'course_id');
+    }
+
+    public function presentstudents(){
+        $attendance = Attendance::where('curriculum_id',$this->id)->count();
+        return $attendance;
     }
 
 

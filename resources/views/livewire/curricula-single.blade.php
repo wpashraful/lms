@@ -7,7 +7,7 @@
     <div class="curriculasingle">
         <h1 class="font-bold text-xl">{{$curriculas->name}}</h1>
     </div>
-    <h2>Students</h2>
+    <h2 class="text-2xl font-bold">Students- present - {{$curriculas->presentstudents()}} absent - {{$curriculas->course->students()->count() - $curriculas->presentstudents()}}</h2>
     <table class="w-full table-auto">
         <tr class="bg-gray-100">
             <th class="text-left p-4 m-4">Name</th>
@@ -18,7 +18,15 @@
             <tr class="border odd:bg-slate-50">
                 <td class="border p-4 m-4 font-bold">{{$stud->name}}</td>
                 <td class="border p-4 m-4 font-bold">{{date('F-j-Y',strtotime($stud->created_at))}}</td>
-                <td class="border p-4 m-4 font-bold"><a class="btn-submit">present</a></td>
+
+                <td class="border p-4 m-4 font-bold">
+                    @if($stud->is_present($curriculas->id))
+                        <p>presented</p>
+                    @else
+                    <button wire:click="attendance({{$stud->id}})" class="btn-submit">present</button>
+
+                    @endif
+                </td>
 {{--                <td class="border p-4 m-4 font-bold">--}}
 {{--                    <div class="flex justify-center item-center">--}}
 {{--                        <a class="mx-4 btn-submit" href="{{route('curricula.show', $course->id )}}">@include('components.icons.eye')</a>--}}
