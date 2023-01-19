@@ -46,6 +46,23 @@
                         </div>
                     @endcan
                 @endif
+
+                @if(Auth::user())
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('question.index')" :active="request()->routeIs('question.index')">
+                                {{ __('Questions') }}
+                            </x-nav-link>
+                        </div>
+
+                @endif
+                @if(Auth::user())
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('quizz.index')" :active="request()->routeIs('quizz.index')">
+                                {{ __('Quizzs') }}
+                            </x-nav-link>
+                        </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
