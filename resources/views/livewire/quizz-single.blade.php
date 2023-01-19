@@ -15,27 +15,6 @@
 
                 @endforeach
 
-
-
-
-                
-{{--                    <div class="mr-4">--}}
-{{--                        <input wire:change.prevent="check" wire:model="answer" value="b,{{$question->id}}"id="answer_a_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
-{{--                        <label for="answer_a_{{$question->id}}">{{$question->answer_a}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="mr-4">--}}
-{{--                        <input wire:change.prevent="check" wire:model="answer" value="b,{{$question->id}}"id="answer_b_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
-{{--                        <label for="answer_b_{{$question->id}}">{{$question->answer_b}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="mr-4">--}}
-{{--                        <input wire:change.prevent="check" wire:model="answer" value="c,{{$question->id}}"id="answer_c_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
-{{--                        <label for="answer_c_{{$question->id}}">{{$question->answer_c}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="mr-4">--}}
-{{--                        <input wire:change.prevent="check" wire:model="answer" value="d,{{$question->id}}"id="answer_d_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
-{{--                        <label for="answer_d_{{$question->id}}">{{$question->answer_d}}</label>--}}
-{{--                    </div>--}}
-
             </div>
         </div>
 

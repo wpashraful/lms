@@ -9,7 +9,6 @@ class QuizzSingle extends Component
 {
     public $quizz;
     public $answer;
-//    public $answers = ['a', 'b', 'c', 'd'];
     public $answers = ['answer_a', 'answer_b', 'answer_c', 'answer_d'];
 
     public $answered = [];

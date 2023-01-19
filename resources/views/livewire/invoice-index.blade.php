@@ -20,7 +20,7 @@
                 <td class="border p-4 m-4 font-bold">${{$invoice->amounts()['due']}}</td>
                 <td class="border p-4 m-4 font-bold">
                     <div class="flex justify-center item-center">
-                        <a class="" href="">@include('components.icons.edit')</a>
+                        <a class="" href="{{route('invoice-edit', $invoice->id)}}">@include('components.icons.edit')</a>
                         <a class="mx-4" href="{{route('invoice-show', $invoice->id)}}">@include('components.icons.eye')</a>
                         <form onsubmit="return confirm('are you sure?')" wire:submit.prevent="">
                             <button type="submit">

@@ -16,7 +16,13 @@ class InvoiceController extends Controller
             return view('invoice.index',[
                 'invoices' => $invoices
             ]);
+        }
 
+        public function edit($id){
+
+            return view('invoice.edit',[
+                'invoice_id' => $id
+            ]);
         }
 
     public function show($id){
