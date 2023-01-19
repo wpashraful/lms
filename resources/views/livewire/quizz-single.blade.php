@@ -1,25 +1,41 @@
 <div>
+
+    {{var_dump($answered)}}
+    <span class="bg-red-100 bg-green-100"></span>
     @foreach($quizz->questions as $question)
-        <div class="mb-2 bg-blue-50 py-4 px-2 border-b-blue-700">
+        <div class="mb-2 @if(array_key_exists($question->id, $answered)) bg-{{$answered[$question->id] ? 'green' : 'red'}}-100 @endif py-4 px-2 border-b-blue-700">
             <h2 class="font-bold ">{{$question->name}}</h2>
             <div class="flex items-center">
+                @foreach($answers as $answer)
 
                 <div class="mr-4 ">
-                    <input wire:change.prevent="check" wire:model="answer" value="a,{{$question->id}}" id="answer_a_{{$question->id}}" type="radio">
-                    <label for="answer_a_{{$question->id}}">{{$question->answer_a}}</label>
+                    <input wire:change.prevent="check" wire:model="answer" value="{{explode('_',$answer)[1]}},{{$question->id}}" id="{{$answer}}_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">
+                    <label for="{{$answer}}_{{$question->id}}">{{$question->$answer}}</label>
                 </div>
-                <div class="mr-4">
-                    <input wire:change.prevent="check" wire:model="answer" value="b,{{$question->id}}"id="answer_b_{{$question->id}}" type="radio">
-                    <label for="answer_b_{{$question->id}}">{{$question->answer_b}}</label>
-                </div>
-                <div class="mr-4">
-                    <input wire:change.prevent="check" wire:model="answer" value="c,{{$question->id}}"id="answer_c_{{$question->id}}" type="radio">
-                    <label for="answer_c_{{$question->id}}">{{$question->answer_c}}</label>
-                </div>
-                <div class="mr-4">
-                    <input wire:change.prevent="check" wire:model="answer" value="d,{{$question->id}}"id="answer_d_{{$question->id}}" type="radio">
-                    <label for="answer_d_{{$question->id}}">{{$question->answer_d}}</label>
-                </div>
+
+                @endforeach
+
+
+
+
+                
+{{--                    <div class="mr-4">--}}
+{{--                        <input wire:change.prevent="check" wire:model="answer" value="b,{{$question->id}}"id="answer_a_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
+{{--                        <label for="answer_a_{{$question->id}}">{{$question->answer_a}}</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="mr-4">--}}
+{{--                        <input wire:change.prevent="check" wire:model="answer" value="b,{{$question->id}}"id="answer_b_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
+{{--                        <label for="answer_b_{{$question->id}}">{{$question->answer_b}}</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="mr-4">--}}
+{{--                        <input wire:change.prevent="check" wire:model="answer" value="c,{{$question->id}}"id="answer_c_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
+{{--                        <label for="answer_c_{{$question->id}}">{{$question->answer_c}}</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="mr-4">--}}
+{{--                        <input wire:change.prevent="check" wire:model="answer" value="d,{{$question->id}}"id="answer_d_{{$question->id}}" @if(array_key_exists($question->id, $answered)) disabled @endif type="radio">--}}
+{{--                        <label for="answer_d_{{$question->id}}">{{$question->answer_d}}</label>--}}
+{{--                    </div>--}}
+
             </div>
         </div>
 

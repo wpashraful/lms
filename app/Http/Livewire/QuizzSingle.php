@@ -9,6 +9,11 @@ class QuizzSingle extends Component
 {
     public $quizz;
     public $answer;
+//    public $answers = ['a', 'b', 'c', 'd'];
+    public $answers = ['answer_a', 'answer_b', 'answer_c', 'answer_d'];
+
+    public $answered = [];
+
 
     public function render()
     {
@@ -25,8 +30,13 @@ class QuizzSingle extends Component
         $question = Question::findOrFail($answer_id);
         if($question->correct_answer == $matchanswer){
             flash()->addSuccess('right answer');
+            $correct = true;
         }else{
             flash()->addWarning('wrong answer');
+            $correct = false;
         }
+
+        $this->answered[$answer_id] = $correct ;
+
     }
 }
