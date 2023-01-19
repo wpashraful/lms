@@ -29,6 +29,7 @@ class QuizzController extends Controller
     }
 
     public function show(Quizz $quizz){
+
         return view('quizz.single',[
             'quizz' => $quizz
         ]);

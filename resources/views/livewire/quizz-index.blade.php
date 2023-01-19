@@ -23,6 +23,9 @@
                             <a class="mr-1" href="{{route('quizz.edit', $quizz->id)}}">
                                 @include('components.icons.edit')
                             </a>
+                            <a class="mr-1" href="{{route('quizz.show', $quizz->id)}}">
+                                @include('components.icons.eye')
+                            </a>
 
                             <form class="ml-1" onsubmit="return confirm('Are you sure?');"
                                   wire:submit.prevent="quizzDelete({{$quizz->id}})">

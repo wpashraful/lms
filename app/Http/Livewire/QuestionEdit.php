@@ -14,7 +14,7 @@ class QuestionEdit extends Component
     public $answer_b;
     public $answer_c;
     public $answer_d;
-    public $correct_answer;
+    public $correct_answer = 'a';
 
     public function mount()
     {
