@@ -8,9 +8,8 @@ use Livewire\Component;
 
 class InvoiceEdit extends Component
 {
-
-    public $invoice_id;
     public $invoice;
+    public $invoice_id;
     public $name;
     public $price;
     public $quantity;

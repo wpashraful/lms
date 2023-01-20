@@ -84,13 +84,43 @@
         <button class="p-2 m-2 font-bold  mt-2 mb-2" wire:click="addNewItem" class="underline">Add Items</button>
     @endif
 
+    <h3 class="font-bold text-2xl mb-2 my-4">Payments</h3>
+    <ul class="mb-4">
+        @foreach($invoice->payments as $payment)
+            <li class="py-2 mb-2">{{date('F j, Y - g:i:a', strtotime($payment->created_at))}} - ${{number_format($payment->price, 2)}} - transaction ID: {{$payment->transaction_id}}
+{{--                <button wire:click="refund({{$payment->id}})" class="bg-red-500 text-white px-4 py-2 text-xs">Refund</button></li>--}}
+        @endforeach
+    </ul>
 
-{{--    <h3 class="font-bold text-4xl mb-2">Payments</h3>--}}
-{{--    <ul class="mb-4">--}}
-{{--        @foreach($invoice->payments as $payment)--}}
-{{--            <li>{{date('F j, Y - g:i:a', strtotime($payment->created_at))}} - ${{number_format($payment->amount, 2)}} - transaction ID: {{$payment->transaction_id}} <button wire:click="refund({{$payment->id}})" class="bg-red-500 text-white px-4 py-2 text-xs">Refund</button></li>--}}
-{{--        @endforeach--}}
-{{--    </ul>--}}
+    <div>
+        <h1 class="p-2 underline inline-block">Add payment</h1>
+    </div>
+
+    <form method="post" action="{{route('stripe-payment')}}"> @csrf
+        <div class="flex mb-4">
+            <div class="w-full">
+                <label class="lms-label" for="card">Card no</label>
+                <input id="card" value="4242424242424242" name="card_no" type="number" class="lms-input" placeholder="Card number">
+            </div>
+            <div class="min-w-max ml-4">
+                <label class="lms-label" for="date">Month/Year</label>
+                <input id="date" value="12/30" name="card_expiry_date" type="text" class="lms-input" placeholder="Expiry month/year">
+            </div>
+            <div class="min-w-max ml-4">
+                <label class="lms-label" for="ccv">CCV</label>
+                <input id="ccv" value="232" name="card_ccv" type="text" class="lms-input" placeholder="CCV">
+            </div>
+            <div class="min-w-max ml-4">
+                <label class="lms-label" for="amount">Amount</label>
+                <input id="amount" name="amount" type="number" class="lms-input" value="{{number_format($invoice->amounts()['due'], 2)}}" placeholder="Amount">
+            </div>
+            <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
+        </div>
+        <button type="submit" class="btn-submit">Pay Now</button>
+    </form>
+
+
+
 </div>
 
 

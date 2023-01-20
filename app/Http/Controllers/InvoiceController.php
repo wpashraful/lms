@@ -19,9 +19,8 @@ class InvoiceController extends Controller
         }
 
         public function edit($id){
-
             return view('invoice.edit',[
-                'invoice_id' => $id
+                'invoice' => Invoice::findOrFail($id),
             ]);
         }
 
@@ -50,7 +49,7 @@ class InvoiceController extends Controller
 //
 //        return $invoice->stream();
         return view('invoice.single',[
-            'invoice_id' => $id
+            'invoice' => Invoice::findOrFail($id)
         ]);
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizzController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\UserController;
 use App\Models\Question;
 use App\Models\Quizz;
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('question', QuestionController::class);
     Route::resource('quizz', QuizzController::class);
     Route::get('/quizz-show/{id}', [QuizzController::class, 'quizzShow'])->name('quizz-show');
+    Route::post('/stripe-payment', [StripePaymentController::class, 'stripePayment'])->name('stripe-payment');
 
 });
 
